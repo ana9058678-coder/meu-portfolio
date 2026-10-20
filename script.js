@@ -81,11 +81,24 @@ function montarCard(projeto) {
 }
 
 async function carregarProjetos() {
+  if (!lista || !recarregar) return;
+  const donoDaConsulta = document.body.dataset.pagina === "dashboard" ? usuarioId : null;
+  if (document.body.dataset.pagina === "dashboard" && (!donoDaConsulta || !perfilPronto)) return;
   recarregar.disabled = true; estadoProjetos.className = "";
   estadoProjetos.textContent = "Carregando projetos…"; lista.replaceChildren();
   try {
-    const resposta = await requisicao("projetos?select=id,titulo,descricao,imagem_url,github_url,site_url&order=criado_em.desc&limit=30");
-    const projetos = await resposta.json();
+    let projetos;
+    if (document.body.dataset.pagina === "dashboard") {
+      const { data, error } = await clienteAuth.from("projetos")
+        .select("id,titulo,descricao,imagem_url,github_url,site_url")
+        .eq("usuario_id", donoDaConsulta).order("criado_em", { ascending: false }).limit(30);
+      if (donoDaConsulta !== usuarioId) return;
+      if (error) throw new Error(mensagemAuth(error));
+      projetos = data;
+    } else {
+      const resposta = await requisicao("projetos?select=id,titulo,descricao,imagem_url,github_url,site_url&order=criado_em.desc&limit=30");
+      projetos = await resposta.json();
+    }
     if (!Array.isArray(projetos)) throw new Error("O servidor retornou um formato inesperado.");
     estadoProjetos.textContent = projetos.length ? "" : "Ainda não há projetos cadastrados. Eles aparecerão aqui quando forem adicionados ao banco.";
     projetos.forEach(p => lista.append(montarCard(p)));
@@ -93,7 +106,7 @@ async function carregarProjetos() {
   finally { recarregar.disabled = false; }
 }
 
-form.addEventListener("submit", async evento => {
+form?.addEventListener("submit", async evento => {
   evento.preventDefault();
   if (enviar.disabled || !form.reportValidity()) return;
   const dados = new FormData(form);
@@ -115,8 +128,8 @@ form.addEventListener("submit", async evento => {
   } catch (erro) { estadoForm.textContent = erro.message; estadoForm.className = "erro"; }
   finally { enviar.disabled = false; enviar.textContent = "Enviar mensagem ↗"; }
 });
-recarregar.addEventListener("click", carregarProjetos);
-carregarProjetos();
+recarregar?.addEventListener("click", carregarProjetos);
+if (lista && document.body.dataset.pagina !== "dashboard") carregarProjetos();
 
 // LOGIN E PAINEL: o Supabase Auth gerencia a sessão e renova os tokens.
 // A autorização real continua nas políticas RLS das tabelas do banco.
@@ -138,6 +151,7 @@ let geracaoAcesso = 0;
 let salvandoProjeto = false;
 
 function statusAcesso(texto, erro = false) {
+  if (!estadoAcesso) return;
   estadoAcesso.textContent = texto;
   estadoAcesso.className = erro ? "status erro" : "status";
 }
@@ -165,50 +179,69 @@ async function fetchAuth(url, opcoes = {}) {
   finally { clearTimeout(limite); opcoes.signal?.removeEventListener("abort", cancelar); }
 }
 
+function irParaLogin() {
+  if (painel) painel.hidden = true;
+  if (camposProjeto) camposProjeto.disabled = true;
+  lista?.replaceChildren();
+  usuarioId = null;
+  perfilPronto = false;
+  window.location.replace("login.html");
+}
+
 async function carregarPerfil(id, geracao) {
   try {
+    // Confirma a conta no servidor antes de mostrar o dashboard.
+    const { data: conta, error: erroConta } = await clienteAuth.auth.getUser();
+    if (geracao !== geracaoAcesso) return;
+    if (erroConta || !conta.user || conta.user.id !== id) {
+      if (!erroConta || erroConta.status === 401 || erroConta.status === 403) { irParaLogin(); return; }
+      throw erroConta;
+    }
     const { data, error } = await clienteAuth.from("usuarios").select("id,nome").eq("id", id).maybeSingle();
     if (geracao !== geracaoAcesso || usuarioId !== id) return;
     if (error) throw error;
+    painel.hidden = false;
+    usuarioAtual.textContent = data ? `Olá, ${data.nome}!` : "Conta conectada";
     if (!data) {
-      statusAcesso("Conta conectada, mas falta o perfil em usuarios. Cadastre seu nome usando o mesmo User ID da conta no Supabase.", true);
+      statusAcesso("Sua conta está conectada, mas falta seu perfil em usuarios. Confira se cadastrou o mesmo User ID no Supabase.", true);
       return;
     }
     perfilPronto = true;
-    usuarioAtual.textContent = `Olá, ${data.nome}!`;
     camposProjeto.disabled = salvandoProjeto;
-    statusAcesso("Você está conectado. Cadastre seu próximo projeto abaixo.");
+    statusAcesso("Você está conectado. Publique seu próximo projeto abaixo.");
+    await carregarProjetos();
   } catch (erro) {
-    if (geracao === geracaoAcesso) statusAcesso(mensagemAuth(erro) + " Atualize a página para tentar carregar seu perfil novamente.", true);
+    if (geracao === geracaoAcesso) statusAcesso(mensagemAuth(erro) + " Atualize a página para tentar novamente.", true);
   }
 }
 
 function atualizarSessao(sessao) {
   const novoId = sessao?.user?.id || null;
-  // Eventos de renovação não apagam o formulário que está sendo preenchido.
-  if (novoId && novoId === usuarioId) return;
+  const pagina = document.body.dataset.pagina;
+  if (pagina === "login") {
+    if (novoId) { window.location.replace("dashboard.html"); return; }
+    entrar.disabled = false;
+    statusAcesso("Entre com o e-mail e a senha da sua conta.");
+    return;
+  }
+  if (pagina !== "dashboard") return;
+  if (!novoId) { ++geracaoAcesso; irParaLogin(); return; }
+  if (novoId === usuarioId) return;
   usuarioId = novoId;
   const geracao = ++geracaoAcesso;
   perfilPronto = false;
+  painel.hidden = true;
   camposProjeto.disabled = true;
   formProjeto.reset();
   estadoProjeto.textContent = "";
-  formLogin.hidden = Boolean(novoId);
-  painel.hidden = !novoId;
-  linkPainel.textContent = novoId ? "Meu painel" : "Entrar";
-  entrar.disabled = false;
-  if (novoId) {
-    usuarioAtual.textContent = sessao.user.email || "Conta conectada";
-    statusAcesso("Carregando seu perfil…");
-    // Fora do callback do Auth para evitar bloqueios entre operações do SDK.
-    setTimeout(() => carregarPerfil(novoId, geracao), 0);
-  } else {
-    usuarioAtual.textContent = "";
-    statusAcesso("Entre para publicar seus projetos.");
-  }
+  lista.replaceChildren();
+  linkPainel.textContent = "Meu dashboard";
+  linkPainel.href = "dashboard.html";
+  statusAcesso("Verificando sua conta…");
+  setTimeout(() => carregarPerfil(novoId, geracao), 0);
 }
 
-document.querySelector("#mostrar-senha").addEventListener("click", evento => {
+document.querySelector("#mostrar-senha")?.addEventListener("click", evento => {
   const campo = document.querySelector("#login-senha");
   const mostrar = campo.type === "password";
   campo.type = mostrar ? "text" : "password";
@@ -216,7 +249,7 @@ document.querySelector("#mostrar-senha").addEventListener("click", evento => {
   evento.currentTarget.setAttribute("aria-pressed", String(mostrar));
 });
 
-formLogin.addEventListener("submit", async evento => {
+formLogin?.addEventListener("submit", async evento => {
   evento.preventDefault();
   if (!clienteAuth || entrar.disabled || !formLogin.reportValidity()) return;
   entrar.disabled = true;
@@ -231,26 +264,24 @@ formLogin.addEventListener("submit", async evento => {
     if (!data.session) throw new Error("Sessão não recebida");
     atualizarSessao(data.session);
     document.querySelector("#login-senha").value = "";
-    document.querySelector("#projeto-titulo").focus();
+    window.location.replace("dashboard.html");
   } catch (erro) { statusAcesso(mensagemAuth(erro), true); }
   finally { entrar.disabled = false; entrar.textContent = "Entrar no painel"; }
 });
 
-sair.addEventListener("click", async () => {
+sair?.addEventListener("click", async () => {
   if (!clienteAuth || sair.disabled || salvandoProjeto) return;
   sair.disabled = true;
   try {
     const { error } = await clienteAuth.auth.signOut({ scope: "local" });
     if (error) throw error;
     atualizarSessao(null);
-    formLogin.reset();
-    statusAcesso("Você saiu da conta.");
-    document.querySelector("#login-email").focus();
+    window.location.replace("login.html");
   } catch (erro) { statusAcesso(mensagemAuth(erro), true); }
   finally { sair.disabled = false; }
 });
 
-formProjeto.addEventListener("submit", async evento => {
+formProjeto?.addEventListener("submit", async evento => {
   evento.preventDefault();
   if (!clienteAuth || !usuarioId || !perfilPronto || salvandoProjeto || !formProjeto.reportValidity()) return;
   const dados = new FormData(formProjeto);
@@ -283,7 +314,7 @@ formProjeto.addEventListener("submit", async evento => {
     if (usuarioId === idDaOperacao) {
       formProjeto.reset();
       estadoProjeto.className = "status sucesso";
-      estadoProjeto.textContent = "Projeto publicado! Ele já está disponível na seção Meus projetos.";
+      estadoProjeto.textContent = "Projeto publicado! Ele já está disponível na página Portfolio.";
     }
     await carregarProjetos();
   } catch (erro) {
@@ -299,11 +330,15 @@ formProjeto.addEventListener("submit", async evento => {
   }
 });
 
-try {
-  if (!window.supabase?.createClient) throw new Error("A biblioteca de login não carregou. Confira sua internet e atualize a página. O formulário de contato continua disponível.");
+if (estadoAcesso) try {
+  if (!window.supabase?.createClient) throw new Error("A biblioteca de login não carregou. Confira sua internet e atualize a página.");
   clienteAuth = window.supabase.createClient(obterUrl(), config.supabaseKey, {
     auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false },
     global: { fetch: fetchAuth }
   });
   clienteAuth.auth.onAuthStateChange((_evento, sessao) => atualizarSessao(sessao));
 } catch (erro) { statusAcesso(erro.message, true); }
+
+window.addEventListener("pageshow", evento => {
+  if (evento.persisted && document.body.dataset.pagina === "dashboard") window.location.reload();
+});
