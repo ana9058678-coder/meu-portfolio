@@ -1,38 +1,360 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Portfólio de Ana Flávia, estudante de Técnico em Informática na Escola Dr. João Beraldo."><title>Quem sou eu | Ana Flávia</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
-<body data-pagina="sobre"><a class="pular" href="#conteudo">Pular para o conteúdo</a><header><a class="marca marca-af" href="index.html"
-   aria-label="Ana Flávia — página inicial">
-  <span class="logo-af" aria-hidden="true">AF<span class="logo-ponto">.</span></span>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <span class="assinatura">
-    <strong>Ana Flávia</strong>
-    <small>PORTFÓLIO PESSOAL</small>
-  </span>
-</a><nav aria-label="Menu principal"><a href="index.html" data-menu="home">Home</a><a href="quemsoueu.html" data-menu="sobre" aria-current="page">Quem sou eu</a><a href="portfolio.html" data-menu="portfolio">Portfolio</a></nav><a href="login.html" id="link-painel" class="secundario">Entrar</a></header><main id="conteudo"><section id="sobre" class="sobre"><p class="eyebrow">01 / SOBRE MIM</p><div><h2>Quem sou eu</h2><p>Meu nome é Ana Flávia e estou cursando o 3º ano do Ensino Médio
-  em Tempo Integral (EMTI), com formação técnica em Informática,
-  na Escola Dr. João Beraldo. Tenho interesse em desenvolvimento
-  de sites e gosto de explorar como a tecnologia pode transformar
-  ideias em projetos. Neste portfólio, compartilho meus trabalhos,
-  aprendizados e minha evolução na área.</p><ul class="tecnologias" aria-label="Tecnologias utilizadas"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Supabase</li></ul></div></section></main><footer>
-  <span>
-    © <span id="ano"></span> ·
-    <a
-      href="https://www.instagram.com/alveswxs7/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Ana Flávia
-    </a>
-  </span>
+  <meta
+    name="description"
+    content="Conheça Ana Flávia, estudante do 3º ano EMTI e do curso Técnico em Informática na Escola Dr. João Beraldo."
+  >
 
-  <span>
-    Técnico em Informática ·
+  <title>Quem sou eu | Ana Flávia</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body data-pagina="sobre">
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header>
     <a
-      href="https://escolaestadualdrjoaoberaldo.com/"
-      target="_blank"
-      rel="noopener noreferrer"
+      class="marca marca-af"
+      href="index.html"
+      aria-label="Ana Flávia — página inicial"
     >
-      Escola Dr. João Beraldo
+      <span class="logo-af" aria-hidden="true">
+        AF<span class="logo-ponto">.</span>
+      </span>
+
+      <span class="assinatura">
+        <strong>Ana Flávia</strong>
+        <small>PORTFÓLIO PESSOAL</small>
+      </span>
     </a>
-  </span>
-<span class="acoes-rodape"><a href="contato.html">Contato</a></span></footer><noscript><p>Ative o JavaScript para carregar projetos, enviar contatos e acessar o dashboard.</p></noscript></body></html>
+
+    <nav aria-label="Menu principal">
+      <a href="index.html" data-menu="home">Home</a>
+      <a
+        href="quemsoueu.html"
+        data-menu="sobre"
+        aria-current="page"
+      >Quem sou eu</a>
+      <a href="portfolio.html" data-menu="portfolio">Portfolio</a>
+    </nav>
+
+    <a href="login.html" id="link-painel" class="secundario">
+      Entrar
+    </a>
+  </header>
+
+  <main id="conteudo" class="pagina-sobre">
+
+    <!-- APRESENTAÇÃO -->
+    <section class="sobre-abertura" aria-labelledby="titulo-sobre">
+      <div class="sobre-apresentacao">
+        <p class="eyebrow">UM POUCO DA MINHA HISTÓRIA</p>
+
+        <h1 id="titulo-sobre">
+          Prazer, Ana Flávia.
+          <em>Aprendendo a criar novas possibilidades.</em>
+        </h1>
+
+        <p class="sobre-resumo">
+          Sou estudante do 3º ano do Ensino Médio em Tempo
+          Integral e do curso Técnico em Informática na
+          Escola Dr. João Beraldo.
+        </p>
+
+        <p>
+          Estou construindo minha trajetória na tecnologia,
+          conhecendo ferramentas e aprendendo a transformar
+          ideias em sites. Este portfólio reúne parte dessa
+          experiência: os projetos, as tentativas e os
+          aprendizados que fazem parte da minha formação.
+        </p>
+
+        <ul class="sobre-marcadores" aria-label="Minha formação">
+          <li>3º ano EMTI</li>
+          <li>Técnico em Informática</li>
+          <li>Desenvolvimento web</li>
+        </ul>
+
+        <a class="botao" href="portfolio.html">
+          Conheça meus projetos <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <figure class="sobre-retrato">
+        <img
+          src="ana-flavia.jpg.jpg"
+          alt="Ana Flávia usando óculos, em uma fotografia em preto e branco"
+          width="1536"
+          height="864"
+        >
+
+        <figcaption>
+          <span class="sobre-legenda-titulo">Ana Flávia</span>
+          <span>Estudante · Em constante aprendizado</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- MINHA RELAÇÃO COM A TECNOLOGIA -->
+    <section class="sobre-bloco" aria-labelledby="titulo-interesses">
+      <div class="sobre-titulo">
+        <p class="eyebrow">CRIATIVIDADE E APRENDIZADO</p>
+        <h2 id="titulo-interesses">O que me interessa na tecnologia</h2>
+        <p>
+          Gosto da possibilidade de unir organização, criatividade
+          e programação em um mesmo projeto.
+        </p>
+      </div>
+
+      <div class="sobre-cards">
+        <article class="sobre-cartao">
+          <span class="sobre-numero" aria-hidden="true">01</span>
+          <h3>Criar experiências visuais</h3>
+          <p>
+            Explorar cores, fontes e formas de organizar o conteúdo
+            para construir páginas bonitas, claras e agradáveis
+            de navegar.
+          </p>
+        </article>
+
+        <article class="sobre-cartao">
+          <span class="sobre-numero" aria-hidden="true">02</span>
+          <h3>Entender como funciona</h3>
+          <p>
+            Descobrir o que acontece por trás de um botão, de um
+            formulário ou de uma página que carrega informações
+            de um banco de dados.
+          </p>
+        </article>
+
+        <article class="sobre-cartao">
+          <span class="sobre-numero" aria-hidden="true">03</span>
+          <h3>Ver uma ideia ganhar forma</h3>
+          <p>
+            Acompanhar um projeto desde sua estrutura inicial até
+            o momento em que ele está publicado e pode ser
+            acessado por outras pessoas.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TRAJETÓRIA ESCOLAR -->
+    <section class="sobre-bloco sobre-trajetoria"
+             aria-labelledby="titulo-trajetoria">
+      <div class="sobre-titulo">
+        <p class="eyebrow">MINHA FORMAÇÃO</p>
+        <h2 id="titulo-trajetoria">Aprender, praticar e evoluir</h2>
+        <p>
+          Na Escola Dr. João Beraldo, minha formação reúne
+          o Ensino Médio e o curso Técnico em Informática.
+          Os trabalhos escolares são uma oportunidade de
+          colocar os conteúdos em prática.
+        </p>
+
+        <a
+          class="secundario"
+          href="https://escolaestadualdrjoaoberaldo.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Conheça minha escola ↗
+        </a>
+      </div>
+
+      <ol class="sobre-linha-tempo">
+        <li>
+          <span class="sobre-etapa">ESTRUTURA</span>
+          <h3>Construindo as primeiras páginas</h3>
+          <p>
+            Com HTML e CSS, venho aprendendo a organizar textos,
+            imagens, menus e seções, além de trabalhar a
+            aparência das páginas.
+          </p>
+        </li>
+
+        <li>
+          <span class="sobre-etapa">PRÁTICA</span>
+          <h3>Ligando os conteúdos aos projetos</h3>
+          <p>
+            Nos projetos de programação web e banco de dados,
+            pratico a criação de formulários, a organização
+            das informações e a conexão entre o site e o banco.
+          </p>
+        </li>
+
+        <li>
+          <span class="sobre-etapa">MOMENTO ATUAL</span>
+          <h3>Organizando meu portfólio</h3>
+          <p>
+            No 3º ano EMTI, estou reunindo meus trabalhos em
+            um site próprio, conectado ao Supabase e publicado
+            na Vercel, com o código organizado no GitHub.
+          </p>
+        </li>
+
+        <li>
+          <span class="sobre-etapa">PRÓXIMOS PASSOS</span>
+          <h3>Aprofundando meus conhecimentos</h3>
+          <p>
+            Quero compreender melhor JavaScript, banco de dados
+            e acessibilidade, além de ganhar mais autonomia
+            para desenvolver e melhorar meus projetos.
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- TECNOLOGIAS -->
+    <section class="sobre-bloco" aria-labelledby="titulo-tecnologias">
+      <div class="sobre-titulo">
+        <p class="eyebrow">MINHA CAIXA DE FERRAMENTAS</p>
+        <h2 id="titulo-tecnologias">Tecnologias que estou aprendendo</h2>
+        <p>
+          Cada ferramenta tem um papel na construção do meu
+          portfólio. Estou desenvolvendo esses conhecimentos
+          ao longo das atividades e dos projetos.
+        </p>
+      </div>
+
+      <div class="sobre-ferramentas">
+        <article class="sobre-ferramenta">
+          <span class="sobre-sigla" aria-hidden="true">HTML</span>
+          <div>
+            <h3>Estrutura e conteúdo</h3>
+            <p>
+              Organizar títulos, textos, imagens, links e
+              formulários nas páginas.
+            </p>
+          </div>
+        </article>
+
+        <article class="sobre-ferramenta">
+          <span class="sobre-sigla" aria-hidden="true">CSS</span>
+          <div>
+            <h3>Estilo e responsividade</h3>
+            <p>
+              Trabalhar cores, espaçamentos e layouts que
+              se adaptem ao computador e ao celular.
+            </p>
+          </div>
+        </article>
+
+        <article class="sobre-ferramenta">
+          <span class="sobre-sigla" aria-hidden="true">JS</span>
+          <div>
+            <h3>Interação nas páginas</h3>
+            <p>
+              Adicionar comportamentos aos formulários e
+              carregar informações para quem acessa o site.
+            </p>
+          </div>
+        </article>
+
+        <article class="sobre-ferramenta">
+          <span class="sobre-sigla" aria-hidden="true">DB</span>
+          <div>
+            <h3>Supabase</h3>
+            <p>
+              Armazenar os projetos, receber mensagens
+              e utilizar autenticação no portfólio.
+            </p>
+          </div>
+        </article>
+
+        <article class="sobre-ferramenta">
+          <span class="sobre-sigla" aria-hidden="true">GIT</span>
+          <div>
+            <h3>GitHub</h3>
+            <p>
+              Manter os arquivos do projeto organizados
+              e registrar as alterações no código.
+            </p>
+          </div>
+        </article>
+
+        <article class="sobre-ferramenta">
+          <span class="sobre-sigla" aria-hidden="true">WEB</span>
+          <div>
+            <h3>Vercel</h3>
+            <p>
+              Publicar o site e compartilhar um endereço
+              para que outras pessoas possam acessá-lo.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- OBJETIVOS -->
+    <section class="sobre-objetivos" aria-labelledby="titulo-objetivos">
+      <div>
+        <p class="eyebrow">OLHANDO PARA FRENTE</p>
+        <h2 id="titulo-objetivos">
+          O que quero desenvolver daqui para frente
+        </h2>
+        <p>
+          Meu objetivo é continuar aprendendo e construir
+          projetos cada vez mais completos, entendendo
+          tanto a parte visual quanto o funcionamento
+          de cada recurso.
+        </p>
+      </div>
+
+      <ul class="sobre-lista-objetivos">
+        <li>Criar páginas que funcionem bem em diferentes telas.</li>
+        <li>Escrever códigos mais organizados e fáceis de entender.</li>
+        <li>Aprofundar meus conhecimentos em programação e banco de dados.</li>
+        <li>Dar atenção à acessibilidade e à facilidade de navegação.</li>
+        <li>Aprender com os erros e aplicar melhorias nos meus projetos.</li>
+      </ul>
+    </section>
+
+    <!-- CONVITE -->
+    <section class="sobre-convite" aria-labelledby="titulo-convite">
+      <p class="eyebrow">DA IDEIA À PRÁTICA</p>
+      <h2 id="titulo-convite">Conheça o que estou construindo.</h2>
+      <p>
+        Meus projetos mostram como venho colocando esses
+        aprendizados em prática durante minha formação.
+      </p>
+
+      <div class="sobre-acoes">
+        <a class="botao" href="portfolio.html">Explorar projetos ↗</a>
+        <a class="secundario" href="contato.html">Fale comigo</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>
+      © <span id="ano"></span> ·
+      <a
+        href="https://www.instagram.com/alveswxs7/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Ana Flávia</a>
+    </span>
+
+    <span>
+      Técnico em Informática ·
+      <a
+        href="https://escolaestadualdrjoaoberaldo.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Escola Dr. João Beraldo</a>
+    </span>
+
+    <span class="acoes-rodape">
+      <a href="contato.html">Contato</a>
+    </span>
+  </footer>
+</body>
+</html>
