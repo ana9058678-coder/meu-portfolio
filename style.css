@@ -1453,3 +1453,490 @@ footer a {
     scroll-behavior: auto;
   }
 }
+/* ==========================================
+   QUEM SOU EU — ANA FLÁVIA
+   ========================================== */
+
+.pagina-sobre {
+  --sobre-borda: #dce4d4;
+  --sobre-fundo: #edf2e6;
+}
+
+/* Apresentação */
+
+.pagina-sobre .sobre-abertura {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(30px, 5vw, 64px);
+  padding-block: clamp(48px, 7vw, 88px);
+}
+
+.sobre-abertura > * {
+  min-width: 0;
+}
+
+.sobre-apresentacao h1 {
+  margin-bottom: 26px;
+  font-size: clamp(38px, 4.6vw, 60px);
+  line-height: 1.12;
+}
+
+.sobre-apresentacao h1 em {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.85em;
+  line-height: 1.18;
+  letter-spacing: -0.04em;
+}
+
+.sobre-apresentacao p {
+  max-width: 59ch;
+  line-height: 1.85;
+}
+
+.sobre-apresentacao .sobre-resumo {
+  color: var(--tinta);
+  font-size: 18px;
+}
+
+.sobre-marcadores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 26px 0 30px;
+  padding: 0;
+  list-style: none;
+}
+
+.sobre-marcadores li {
+  padding: 7px 12px;
+  border: 1px solid var(--sobre-borda);
+  border-radius: 999px;
+  background: var(--sobre-fundo);
+  color: var(--verde);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Foto e assinatura */
+
+.sobre-retrato {
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #d5dfca;
+  border-radius: 28px;
+  background: #e9efdf;
+  box-shadow:
+    8px 10px 0 #dfe7d5,
+    0 20px 45px rgb(35 56 39 / 7%);
+}
+
+.sobre-retrato img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 19px;
+}
+
+.sobre-retrato figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 22px 12px 15px;
+  text-align: center;
+  color: var(--texto);
+  font-size: 12px;
+}
+
+.sobre-legenda-titulo {
+  color: var(--verde);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-style: italic;
+}
+
+/* Seções e títulos */
+
+.pagina-sobre .sobre-bloco {
+  padding-block: clamp(42px, 6vw, 70px);
+  border-top: 1px solid var(--sobre-borda);
+}
+
+.sobre-titulo {
+  max-width: 680px;
+  margin-bottom: 32px;
+}
+
+.sobre-titulo h2 {
+  margin-bottom: 18px;
+  font-size: clamp(28px, 3.4vw, 42px);
+}
+
+.sobre-titulo > p:last-child {
+  margin-bottom: 0;
+}
+
+.sobre-titulo p {
+  line-height: 1.85;
+}
+
+/* Cartões de interesses */
+
+.sobre-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.sobre-cartao {
+  min-width: 0;
+  padding: clamp(22px, 3vw, 30px);
+  border: 1px solid var(--sobre-borda);
+  border-radius: 22px;
+  background: var(--papel);
+  box-shadow: 0 8px 24px rgb(35 56 39 / 3%);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease;
+}
+
+.sobre-numero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 26px;
+  border-radius: 14px;
+  background: var(--sobre-fundo);
+  color: var(--verde);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+}
+
+.sobre-cartao h3 {
+  margin-bottom: 14px;
+  font-size: 21px;
+  line-height: 1.35;
+}
+
+.sobre-cartao p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* Trajetória */
+
+.pagina-sobre .sobre-trajetoria {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: clamp(32px, 6vw, 70px);
+}
+
+.sobre-trajetoria > * {
+  min-width: 0;
+}
+
+.sobre-trajetoria .secundario {
+  margin-top: 8px;
+}
+
+.sobre-linha-tempo {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sobre-linha-tempo li {
+  position: relative;
+  margin-left: 7px;
+  padding: 0 0 34px 29px;
+  border-left: 1px solid #cbd9bf;
+}
+
+.sobre-linha-tempo li:last-child {
+  padding-bottom: 0;
+  border-left-color: transparent;
+}
+
+.sobre-linha-tempo li::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -6px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--fundo);
+  border-radius: 50%;
+  background: var(--oliva);
+  box-shadow: 0 0 0 3px #e2ead8;
+}
+
+.sobre-etapa {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--oliva);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+
+.sobre-linha-tempo h3 {
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+
+.sobre-linha-tempo p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* Tecnologias */
+
+.sobre-ferramentas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.sobre-ferramenta {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--sobre-borda);
+  border-radius: 20px;
+  background: var(--papel);
+}
+
+.sobre-ferramenta > div {
+  min-width: 0;
+}
+
+.sobre-sigla {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  border: 1px solid #d9e4cd;
+  border-radius: 16px;
+  background: var(--sobre-fundo);
+  color: var(--verde);
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sobre-ferramenta h3 {
+  margin: 2px 0 9px;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.sobre-ferramenta p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Objetivos */
+
+.pagina-sobre .sobre-objetivos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 58px);
+
+  margin-block: 28px;
+  padding: clamp(26px, 4vw, 48px);
+
+  border: 1px solid #d6e1cb;
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      ellipse at right top,
+      #f7faef,
+      transparent 65%
+    ),
+    #eaf0e1;
+}
+
+.sobre-objetivos > * {
+  min-width: 0;
+}
+
+.sobre-objetivos h2 {
+  font-size: clamp(27px, 3vw, 37px);
+}
+
+.sobre-objetivos p:last-child {
+  margin-bottom: 0;
+  line-height: 1.85;
+}
+
+.sobre-lista-objetivos {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sobre-lista-objetivos li {
+  position: relative;
+  padding-left: 25px;
+  color: var(--tinta);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.sobre-lista-objetivos li::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--oliva);
+}
+
+/* Convite final */
+
+.pagina-sobre .sobre-convite {
+  max-width: 720px;
+  margin-inline: auto;
+  padding-block: 58px 32px;
+  text-align: center;
+}
+
+.sobre-convite .eyebrow {
+  justify-content: center;
+}
+
+.sobre-convite h2 {
+  font-size: clamp(29px, 3.6vw, 43px);
+}
+
+.sobre-convite > p:not(.eyebrow) {
+  max-width: 55ch;
+  margin-inline: auto;
+  line-height: 1.85;
+}
+
+.sobre-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.sobre-acoes .secundario {
+  min-height: 54px;
+}
+
+/* Interações */
+
+@media (hover: hover) {
+  .sobre-cartao:hover {
+    transform: translateY(-4px);
+    border-color: #afc39c;
+  }
+}
+
+/* Tablet e celular */
+
+@media (max-width: 900px) {
+  .pagina-sobre .sobre-abertura {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .sobre-apresentacao {
+    max-width: 700px;
+  }
+
+  .sobre-retrato {
+    max-width: 560px;
+    justify-self: center;
+    width: calc(100% - 8px);
+  }
+
+  .sobre-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-cartao {
+    padding: 26px;
+  }
+
+  .sobre-numero {
+    margin-bottom: 18px;
+  }
+
+  .pagina-sobre .sobre-trajetoria {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .pagina-sobre .sobre-objetivos {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .sobre-ferramentas {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-ferramenta {
+    gap: 14px;
+    padding: 20px;
+  }
+
+  .sobre-apresentacao h1 {
+    font-size: clamp(35px, 9vw, 46px);
+  }
+
+  .sobre-apresentacao .sobre-resumo {
+    font-size: 17px;
+  }
+
+  .sobre-marcadores {
+    gap: 7px;
+  }
+
+  .sobre-marcadores li {
+    font-size: 11px;
+  }
+
+  .sobre-acoes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagina-sobre .sobre-objetivos {
+    padding: 26px 22px;
+    border-radius: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sobre-cartao {
+    transition: none;
+  }
+
+  .sobre-cartao:hover {
+    transform: none;
+  }
+}
