@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conheça a trajetória, formação, interesses e objetivos de Ana Flávia, estudante de Técnico em Informática.">
+  <meta property="og:title" content="Quem sou eu | Ana Flávia">
+  <meta property="og:description" content="Conheça minha história, meus estudos e meus objetivos na tecnologia.">
+  <meta name="robots" content="index, follow">
+  <title>Quem sou eu | Ana Flávia</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .pagina-sobre {
+      padding: 80px 10%;
+    }
+
+    .sobre-intro {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 60px;
+    }
+
+    .sobre-intro h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 5vw, 55px);
+      color: var(--roxo-escuro);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .sobre-intro h1 span {
+      color: var(--roxo);
+    }
+
+    .sobre-intro p {
+      color: var(--cinza);
+      font-size: 16px;
+    }
+
+    .sobre-bloco {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+      margin-bottom: 65px;
+    }
+
+    .sobre-texto h2,
+    .secao-objetivos h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--roxo-escuro);
+      margin-bottom: 18px;
+    }
+
+    .sobre-texto p {
+      color: var(--cinza);
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    .sobre-destaque {
+      background: var(--lilas);
+      padding: 35px;
+      border-radius: 20px;
+      border-left: 5px solid var(--roxo);
+    }
+
+    .sobre-destaque h3 {
+      color: var(--roxo-escuro);
+      margin-bottom: 12px;
+      font-size: 21px;
+    }
+
+    .sobre-destaque p {
+      color: #625873;
+      font-size: 15px;
+    }
+
+    .secao-interesses {
+      padding: 75px 10%;
+      background: var(--branco);
+    }
+
+    .secao-interesses h2 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      font-size: 35px;
+      color: var(--roxo-escuro);
+      margin-bottom: 40px;
+    }
+
+    .grade-interesses {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .interesse-card {
+      border: 1px solid var(--borda);
+      padding: 30px;
+      border-radius: 18px;
+      transition: 0.3s;
+    }
+
+    .interesse-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--sombra);
+    }
+
+    .interesse-card .numero {
+      color: var(--roxo);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .interesse-card h3 {
+      color: var(--roxo-escuro);
+      margin: 12px 0;
+      font-size: 19px;
+    }
+
+    .interesse-card p {
+      color: var(--cinza);
+      font-size: 14px;
+    }
+
+    .secao-objetivos {
+      padding: 80px 10%;
+      text-align: center;
+    }
+
+    .secao-objetivos > p {
+      max-width: 750px;
+      margin: 0 auto 35px;
+      color: var(--cinza);
+    }
+
+    .objetivos-lista {
+      max-width: 750px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      text-align: left;
+    }
+
+    .objetivo-item {
+      background: var(--branco);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 18px;
+      color: var(--texto);
+    }
+
+    .objetivo-item span {
+      color: var(--roxo);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .sobre-contato {
+      background: var(--roxo-escuro);
+      color: var(--branco);
+      padding: 65px 10%;
+      text-align: center;
+    }
+
+    .sobre-contato h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      margin-bottom: 15px;
+    }
+
+    .sobre-contato p {
+      color: #e0d7ef;
+      margin-bottom: 25px;
+    }
+
+    .sobre-contato .botao {
+      background: var(--branco);
+      border-color: var(--branco);
+      color: var(--roxo-escuro);
+    }
+
+    @media (max-width: 750px) {
+      .pagina-sobre {
+        padding: 60px 7%;
+      }
+
+      .sobre-bloco {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .grade-interesses {
+        grid-template-columns: 1fr;
+      }
+
+      .objetivos-lista {
+        grid-template-columns: 1fr;
+      }
+
+      .secao-interesses,
+      .secao-objetivos {
+        padding: 60px 7%;
+      }
+
+      .sobre-texto h2,
+      .secao-objetivos h2 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="cabecalho">
+    <a href="index.html" class="logo">AF<span>.</span></a>
+
+    <nav class="menu">
+      <a href="index.html">Início</a>
+      <a href="quemsoueu.html" class="ativo">Quem sou eu</a>
+      <a href="portfolio.html">Portfólio</a>
+      <a href="login.html" class="link-login">Entrar</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="pagina-sobre">
+      <div class="sobre-intro">
+        <span class="destaque">UM POUCO SOBRE MIM</span>
+        <h1>Prazer, eu sou <span>Ana Flávia!</span></h1>
+        <p>
+          Uma estudante curiosa, dedicada e apaixonada por aprender,
+          descobrir novas possibilidades e construir meu próprio caminho
+          no mundo da tecnologia.
+        </p>
+      </div>
+
+      <div class="sobre-bloco">
+        <div class="sobre-texto">
+          <span class="destaque">MINHA HISTÓRIA</span>
+          <h2>Quem sou eu além da tela?</h2>
+
+          <p>
+            Meu nome é Ana Flávia e sou estudante do curso Técnico em
+            Informática na Escola Estadual Dr. João Beraldo. Durante minha
+            formação, venho descobrindo o universo da tecnologia e aprendendo
+            como ela pode transformar ideias em soluções úteis para as pessoas.
+          </p>
+
+          <p>
+            Sou uma pessoa que acredita na importância do conhecimento,
+            da dedicação e da vontade de evoluir. Cada novo conteúdo que
+            estudo representa uma oportunidade de desenvolver habilidades,
+            superar desafios e conhecer melhor minhas capacidades.
+          </p>
+
+          <p>
+            Minha trajetória é construída por experiências, atividades
+            escolares, trabalhos individuais e projetos em grupo. Em cada
+            um deles procuro aprender, colaborar e melhorar o resultado
+            do meu trabalho.
+          </p>
+        </div>
+
+        <div class="sobre-destaque">
+          <h3>Minha visão sobre a tecnologia</h3>
+          <p>
+            Para mim, a tecnologia vai muito além de computadores e códigos.
+            Ela é uma ferramenta capaz de aproximar pessoas, facilitar
+            tarefas, compartilhar conhecimento e criar oportunidades.
+            É por isso que tenho interesse em continuar aprendendo e
+            explorando tudo o que essa área pode oferecer.
+          </p>
+        </div>
+      </div>
+
+      <div class="sobre-bloco">
+        <div class="sobre-destaque">
+          <h3>Minha experiência escolar</h3>
+          <p>
+            A escola tem um papel importante na minha formação. Por meio
+            das aulas e dos projetos, tenho a oportunidade de transformar
+            conhecimentos teóricos em atividades práticas, trabalhar em
+            equipe e desenvolver mais responsabilidade e organização.
+          </p>
+        </div>
+
+        <div class="sobre-texto">
+          <span class="destaque">MINHA FORMAÇÃO</span>
+          <h2>Aprendizado que constrói o futuro.</h2>
+
+          <p>
+            No curso Técnico em Informática, tenho contato com conteúdos
+            relacionados à criação de sites, programação, desenvolvimento
+            web e bancos de dados.
+          </p>
+
+          <p>
+            Aprender a desenvolver páginas com HTML, utilizar CSS para
+            construir layouts e conhecer JavaScript para adicionar
+            interatividade são algumas das experiências que fazem parte
+            da minha formação.
+          </p>
+
+          <p>
+            Também estou aprendendo a importância de organizar informações
+            em bancos de dados e compreender como os diferentes sistemas
+            trabalham juntos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao-interesses">
+      <span class="destaque" style="display:block;text-align:center;">O QUE FAZ PARTE DE MIM</span>
+      <h2>Meus interesses e características</h2>
+
+      <div class="grade-interesses">
+
+        <article class="interesse-card">
+          <span class="numero">01 / TECNOLOGIA</span>
+          <h3>Descobrir coisas novas</h3>
+          <p>
+            Tenho interesse em conhecer ferramentas, linguagens e recursos
+            tecnológicos que ajudam a criar projetos e resolver problemas.
+          </p>
+        </article>
+
+        <article class="interesse-card">
+          <span class="numero">02 / CRIATIVIDADE</span>
+          <h3>Transformar ideias</h3>
+          <p>
+            Gosto da possibilidade de transformar uma ideia em algo visual,
+            organizado e funcional, principalmente na criação de páginas web.
+          </p>
+        </article>
+
+        <article class="interesse-card">
+          <span class="numero">03 / APRENDIZADO</span>
+          <h3>Buscar conhecimento</h3>
+          <p>
+            Acredito que sempre existe algo novo para aprender e que cada
+            desafio pode contribuir para meu desenvolvimento pessoal.
+          </p>
+        </article>
+
+        <article class="interesse-card">
+          <span class="numero">04 / ORGANIZAÇÃO</span>
+          <h3>Planejar e desenvolver</h3>
+          <p>
+            Procuro organizar minhas atividades, acompanhar minhas tarefas
+            e dedicar atenção aos detalhes dos trabalhos que realizo.
+          </p>
+        </article>
+
+        <article class="interesse-card">
+          <span class="numero">05 / COLABORAÇÃO</span>
+          <h3>Aprender em equipe</h3>
+          <p>
+            Os trabalhos em grupo são oportunidades para trocar ideias,
+            ouvir diferentes opiniões e construir resultados em conjunto.
+          </p>
+        </article>
+
+        <article class="interesse-card">
+          <span class="numero">06 / EVOLUÇÃO</span>
+          <h3>Superar desafios</h3>
+          <p>
+            Entendo que errar faz parte do aprendizado. Procuro aprender
+            com as dificuldades e melhorar a cada novo projeto.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="secao-objetivos">
+      <span class="destaque">MEUS PRÓXIMOS PASSOS</span>
+      <h2>O que quero conquistar?</h2>
+
+      <p>
+        Quero continuar desenvolvendo meus conhecimentos, ampliar minhas
+        experiências na área de informática e construir uma trajetória
+        profissional da qual eu possa me orgulhar.
+      </p>
+
+      <div class="objetivos-lista">
+        <div class="objetivo-item"><span>✓</span> Aprimorar meus conhecimentos em programação.</div>
+        <div class="objetivo-item"><span>✓</span> Desenvolver projetos cada vez melhores.</div>
+        <div class="objetivo-item"><span>✓</span> Aprender novas tecnologias e ferramentas.</div>
+        <div class="objetivo-item"><span>✓</span> Conquistar oportunidades na área de tecnologia.</div>
+        <div class="objetivo-item"><span>✓</span> Construir um portfólio com meus trabalhos.</div>
+        <div class="objetivo-item"><span>✓</span> Continuar evoluindo pessoal e profissionalmente.</div>
+      </div>
+    </section>
+
+    <section class="sobre-contato">
+      <h2>Vamos conhecer meus projetos?</h2>
+      <p>
+        Cada projeto representa uma parte do meu aprendizado e da minha
+        evolução na área de tecnologia.
+      </p>
+      <a href="portfolio.html" class="botao">Explorar meu portfólio</a>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div>
+      <a href="index.html" class="logo">AF<span>.</span></a>
+      <p>Construindo meu caminho na tecnologia.</p>
+    </div>
+
+    <div class="rodape-links">
+      <a href="https://www.instagram.com/alveswxs7/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://escolaestadualdrjoaoberaldo.com/" target="_blank" rel="noopener noreferrer">Escola Dr. João Beraldo</a>
+    </div>
+
+    <p class="copyright">© 2026 Ana Flávia. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
