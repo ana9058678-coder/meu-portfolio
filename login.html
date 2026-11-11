@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Área de acesso administrativo do portfólio de Ana Flávia.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Entrar | Ana Flávia</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .login-area {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 55px 7%;
+      background:
+        radial-gradient(circle at 15% 20%, #eee4ff 0, transparent 35%),
+        var(--fundo);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 450px;
+      padding: 45px;
+      background: var(--branco);
+      border: 1px solid var(--borda);
+      border-radius: 22px;
+      box-shadow: var(--sombra);
+    }
+
+    .login-logo {
+      width: 65px;
+      height: 65px;
+      border-radius: 20px;
+      background: var(--lilas);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: var(--roxo-escuro);
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .login-card h1 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      color: var(--roxo-escuro);
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .login-subtitulo {
+      text-align: center;
+      color: var(--cinza);
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    .campo-login {
+      margin-bottom: 20px;
+    }
+
+    .campo-login label {
+      display: block;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--texto);
+      margin-bottom: 8px;
+    }
+
+    .campo-login input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--borda);
+      border-radius: 10px;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+      background: #fcfbfe;
+      transition: 0.3s;
+    }
+
+    .campo-login input:focus {
+      border-color: var(--roxo);
+      box-shadow: 0 0 0 3px rgba(121, 82, 199, 0.12);
+    }
+
+    .botao-login {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 30px;
+      background: var(--roxo);
+      color: white;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .botao-login:hover {
+      background: var(--roxo-escuro);
+      transform: translateY(-2px);
+    }
+
+    .botao-login:disabled {
+      opacity: 0.65;
+      cursor: wait;
+      transform: none;
+    }
+
+    .mensagem-login {
+      display: none;
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .mensagem-login.erro {
+      display: block;
+      background: #fff0f0;
+      color: #a52b35;
+    }
+
+    .mensagem-login.sucesso {
+      display: block;
+      background: #edf9f0;
+      color: #23733a;
+    }
+
+    .login-voltar {
+      display: block;
+      text-align: center;
+      margin-top: 25px;
+      color: var(--roxo);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .login-voltar:hover {
+      color: var(--roxo-escuro);
+    }
+
+    @media (max-width: 500px) {
+      .login-card {
+        padding: 32px 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="cabecalho">
+    <a href="index.html" class="logo">AF<span>.</span></a>
+
+    <nav class="menu">
+      <a href="index.html">Início</a>
+      <a href="quemsoueu.html">Quem sou eu</a>
+      <a href="portfolio.html">Portfólio</a>
+    </nav>
+  </header>
+
+  <main class="login-area">
+
+    <section class="login-card">
+
+      <div class="login-logo">AF.</div>
+
+      <span class="destaque" style="display:block;text-align:center;">
+        ÁREA RESTRITA
+      </span>
+
+      <h1>Bem-vindo(a)!</h1>
+
+      <p class="login-subtitulo">
+        Entre com seus dados para acessar o painel administrativo.
+      </p>
+
+      <form id="formLogin">
+
+        <div class="campo-login">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Digite seu e-mail"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+        <div class="campo-login">
+          <label for="senha">Senha</label>
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            placeholder="Digite sua senha"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <button type="submit" class="botao-login" id="botaoEntrar">
+          Entrar no painel
+        </button>
+
+        <div id="mensagemLogin" class="mensagem-login" role="status" aria-live="polite"></div>
+
+      </form>
+
+      <a href="index.html" class="login-voltar">
+        ← Voltar para a página inicial
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div>
+      <a href="index.html" class="logo">AF<span>.</span></a>
+      <p>Construindo meu caminho na tecnologia.</p>
+    </div>
+
+    <p class="copyright">
+      © 2026 Ana Flávia. Todos os direitos reservados.
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="login.js"></script>
+
+</body>
+</html>
