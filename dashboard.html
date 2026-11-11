@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard | Ana Flávia</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    body {
+      background: #f7f4fc;
+    }
+
+    .dashboard {
+      max-width: 850px;
+      margin: 55px auto;
+      padding: 20px;
+    }
+
+    .painel-topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .painel-topo h1 {
+      color: #56358c;
+      margin-bottom: 8px;
+    }
+
+    .formulario-projeto {
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(50, 30, 80, 0.08);
+    }
+
+    .formulario-projeto h2 {
+      color: #56358c;
+      margin-bottom: 22px;
+    }
+
+    .campo {
+      margin-bottom: 20px;
+    }
+
+    .campo label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #40334f;
+    }
+
+    .campo input,
+    .campo textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ded6e9;
+      border-radius: 9px;
+      font: inherit;
+      box-sizing: border-box;
+    }
+
+    .campo textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .botao-sair {
+      background: #e9e0f5;
+      color: #56358c;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .mensagem-dashboard {
+      margin-top: 18px;
+      font-weight: 600;
+    }
+
+    .sucesso {
+      color: #16834a;
+    }
+
+    .erro {
+      color: #c0392b;
+    }
+
+    @media (max-width: 600px) {
+      .dashboard {
+        margin: 25px auto;
+      }
+
+      .formulario-projeto {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="cabecalho">
+    <a href="index.html" class="logo">AF.</a>
+
+    <nav class="menu">
+      <a href="index.html">Início</a>
+      <a href="quemsoueu.html">Quem sou eu</a>
+      <a href="portfolio.html">Portfólio</a>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+
+    <div class="painel-topo">
+      <div>
+        <h1>Painel administrativo</h1>
+        <p>Gerencie os projetos do seu portfólio.</p>
+      </div>
+
+      <button type="button" class="botao-sair" id="botaoSair">
+        Sair da conta
+      </button>
+    </div>
+
+    <section class="formulario-projeto">
+
+      <h2>Cadastrar novo projeto</h2>
+
+      <form id="formProjeto">
+
+        <div class="campo">
+          <label for="nome">Título do projeto</label>
+          <input
+            type="text"
+            id="nome"
+            placeholder="Ex.: Sistema de restaurante"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="descricao">Descrição</label>
+          <textarea
+            id="descricao"
+            placeholder="Conte um pouco sobre o projeto..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="campo">
+          <label for="link">Link do projeto</label>
+          <input
+            type="url"
+            id="link"
+            placeholder="https://..."
+          >
+        </div>
+
+        <div class="campo">
+          <label for="foto">Imagem do projeto</label>
+          <input
+            type="file"
+            id="foto"
+            accept="image/png,image/jpeg,image/webp"
+            required
+          >
+        </div>
+
+        <button type="submit" class="botao" id="botaoCadastrar">
+          Cadastrar projeto
+        </button>
+
+        <p
+          id="mensagemDashboard"
+          class="mensagem-dashboard"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>© 2026 Ana Flávia. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="dashboard.js"></script>
+
+</body>
+</html>
