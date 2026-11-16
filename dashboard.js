@@ -1,6 +1,5 @@
 
 const SUPABASE_URL = 'https://uemjeljauyvnrgqzhwsg.supabase.co';
-
 const SUPABASE_KEY = 'sb_publishable_UFYkjpwlsFUpINprYjez6g_P052sK70';
 
 const supabaseClient = window.supabase.createClient(
@@ -20,7 +19,6 @@ function mostrarMensagem(texto, tipo) {
   mensagem.className = 'mensagem-dashboard ' + tipo;
 }
 
-// Verificar se existe uma sessão
 async function verificarLogin() {
   const { data, error } = await supabaseClient.auth.getSession();
 
@@ -31,14 +29,13 @@ async function verificarLogin() {
 
   usuarioAtual = data.session.user;
 
-  // Verificar se o usuário possui perfil cadastrado
   const { data: perfil, error: erroPerfil } = await supabaseClient
     .from('usuarios')
-    .select('id')
+    .select('id, eh_admin')
     .eq('id', usuarioAtual.id)
     .maybeSingle();
 
-  if (erroPerfil || !perfil) {
+  if (erroPerfil || !perfil || perfil.eh_admin !== true) {
     await supabaseClient.auth.signOut();
     window.location.href = 'login.html';
     return false;
@@ -47,7 +44,6 @@ async function verificarLogin() {
   return true;
 }
 
-// Cadastrar projeto
 formProjeto.addEventListener('submit', async function(event) {
   event.preventDefault();
 
@@ -79,6 +75,7 @@ formProjeto.addEventListener('submit', async function(event) {
   if (link) {
     try {
       const url = new URL(link);
+
       if (!['http:', 'https:'].includes(url.protocol)) {
         throw new Error('Link inválido');
       }
@@ -91,42 +88,36 @@ formProjeto.addEventListener('submit', async function(event) {
   botaoCadastrar.disabled = true;
   botaoCadastrar.textContent = 'Salvando projeto...';
 
-  try {
-    // Criar nome único para a imagem
-    const extensao = arquivo.name.split('.').pop().toLowerCase();
-    const nomeArquivo = `${usuarioAtual.id}/${Date.now()}.${extensao}`;
+  let caminhoImagem = null;
 
-    // Enviar imagem para o Storage
+  try {
+    const extensao = arquivo.name.split('.').pop().toLowerCase();
+    caminhoImagem = `${usuarioAtual.id}/${crypto.randomUUID()}.${extensao}`;
+
     const { error: erroUpload } = await supabaseClient.storage
       .from('portfolio-imagens')
-      .upload(nomeArquivo, arquivo, {
+      .upload(caminhoImagem, arquivo, {
         cacheControl: '3600',
         upsert: false
       });
 
-    if (erroUpload) {
-      throw erroUpload;
-    }
+    if (erroUpload) throw erroUpload;
 
-    // Obter endereço público da imagem
     const { data: imagemPublica } = supabaseClient.storage
       .from('portfolio-imagens')
-      .getPublicUrl(nomeArquivo);
+      .getPublicUrl(caminhoImagem);
 
-    // Salvar projeto na tabela projetos
     const { error: erroProjeto } = await supabaseClient
       .from('projetos')
       .insert({
-        nome: nome,
-        descricao: descricao,
+        nome,
+        descricao,
         link: link || null,
         foto: imagemPublica.publicUrl,
         usuario_id: usuarioAtual.id
       });
 
-    if (erroProjeto) {
-      throw erroProjeto;
-    }
+    if (erroProjeto) throw erroProjeto;
 
     mostrarMensagem('Projeto cadastrado com sucesso!', 'sucesso');
     formProjeto.reset();
@@ -134,7 +125,7 @@ formProjeto.addEventListener('submit', async function(event) {
   } catch (erro) {
     console.error('Erro ao cadastrar projeto:', erro);
     mostrarMensagem(
-      'Não foi possível cadastrar. Verifique as permissões do Supabase e tente novamente.',
+      'Não foi possível cadastrar. Verifique as permissões do Supabase.',
       'erro'
     );
 
@@ -144,7 +135,6 @@ formProjeto.addEventListener('submit', async function(event) {
   }
 });
 
-// Sair da conta
 botaoSair.addEventListener('click', async function() {
   const { error } = await supabaseClient.auth.signOut();
 
@@ -156,5 +146,4 @@ botaoSair.addEventListener('click', async function() {
   window.location.href = 'index.html';
 });
 
-// Iniciar verificação
 verificarLogin();
