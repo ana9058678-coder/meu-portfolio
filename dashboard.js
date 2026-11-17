@@ -1,11 +1,5 @@
 
-const SUPABASE_URL = 'https://uemjeljauyvnrgqzhwsg.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_UFYkjpwlsFUpINprYjez6g_P052sK70';
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+const supabaseClient = window.supabaseClient;
 
 const formProjeto = document.getElementById('formProjeto');
 const listaProjetos = document.getElementById('listaProjetos');
@@ -40,6 +34,12 @@ function linkSeguro(link) {
 }
 
 async function verificarAcesso() {
+  if (!supabaseClient) {
+    alert('A conexão com o Supabase não foi inicializada.');
+    window.location.href = 'login.html';
+    return false;
+  }
+
   const { data, error } = await supabaseClient.auth.getSession();
 
   if (error || !data.session) {
@@ -51,13 +51,13 @@ async function verificarAcesso() {
 
   const { data: perfil, error: erroPerfil } = await supabaseClient
     .from('usuarios')
-    .select('id, nome, email')
+    .select('id, nome, email, eh_admin')
     .eq('id', usuarioAtual.id)
     .maybeSingle();
 
-  if (erroPerfil || !perfil) {
+  if (erroPerfil || !perfil || perfil.eh_admin !== true) {
     await supabaseClient.auth.signOut();
-    alert('Seu usuário não possui um perfil autorizado.');
+    alert('Acesso permitido somente à administradora.');
     window.location.href = 'login.html';
     return false;
   }
@@ -174,34 +174,27 @@ formProjeto.addEventListener('submit', async function(event) {
           upsert: false
         });
 
-      if (erroUpload) {
-        throw erroUpload;
-      }
+      if (erroUpload) throw erroUpload;
     }
 
     const { error } = await supabaseClient
       .from('projetos')
       .insert({
-        nome: nome,
-        descricao: descricao,
-        link: link,
+        nome,
+        descricao,
+        link,
         foto: caminhoFoto,
         usuario_id: usuarioAtual.id
       });
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
     mostrarMensagem('Projeto cadastrado com sucesso!');
-
     formProjeto.reset();
-
     await carregarProjetos();
 
   } catch (erro) {
     console.error('Erro ao cadastrar projeto:', erro);
-
     mostrarMensagem(
       'Não foi possível cadastrar. Confira as permissões do banco e do Storage.',
       'erro'
