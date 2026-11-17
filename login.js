@@ -1,11 +1,5 @@
 
-const SUPABASE_URL = 'https://uemjeljauyvnrgqzhwsg.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_UFYkjpwlsFUpINprYjez6g_P052sK70';
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+const supabaseClient = window.supabaseClient;
 
 const formLogin = document.getElementById('formLogin');
 const mensagemLogin = document.getElementById('mensagemLogin');
@@ -54,15 +48,15 @@ formLogin.addEventListener('submit', async function(event) {
         'Acesso não autorizado. Somente a administradora pode entrar.',
         'erro'
       );
-
       return;
     }
 
     mostrarMensagem('Acesso autorizado! Redirecionando...', 'sucesso');
+
     window.location.href = 'dashboard.html';
 
   } catch (erro) {
-    console.error(erro);
+    console.error('Erro no login:', erro);
     mostrarMensagem('Erro de conexão. Tente novamente.', 'erro');
 
   } finally {
