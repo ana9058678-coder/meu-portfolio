@@ -21,3 +21,4 @@ if (!window.supabase) {
 
     console.log('Supabase conectado ao portfólio.');
 }
+// Atualizado para gerar uma nova publicação na Vercel.
