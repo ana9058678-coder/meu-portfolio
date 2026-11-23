@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -88,7 +87,7 @@
     }
 
     .projeto-conteudo h3 {
-      color: var(--roxo-escuro);
+      color: var(--roxo-escuro;
       font-size: 21px;
       margin: 10px 0;
     }
@@ -246,12 +245,24 @@
     const supabaseClient = window.supabaseClient;
     const listaProjetos = document.getElementById('listaProjetos');
 
+    // CORRIGIDO: transforma links assinados em links públicos
     function obterImagem(foto) {
       if (!foto) return '';
 
       if (/^https?:\/\//i.test(foto)) {
         try {
           const url = new URL(foto);
+
+          if (url.pathname.includes('/storage/v1/object/sign/')) {
+            url.pathname = url.pathname.replace(
+              '/object/sign/',
+              '/object/public/'
+            );
+
+            url.search = '';
+            return url.href;
+          }
+
           return ['http:', 'https:'].includes(url.protocol)
             ? url.href
             : '';
