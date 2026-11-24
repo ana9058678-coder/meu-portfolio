@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato | Ana Flávia</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .contato {
+      max-width: 750px;
+      margin: 60px auto;
+      padding: 30px;
+    }
+
+    .contato h1 {
+      color: #7041a6;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .contato p {
+      line-height: 1.7;
+    }
+
+    .form-contato {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px #00000012;
+      margin-top: 25px;
+    }
+
+    .form-contato label {
+      display: block;
+      margin-top: 18px;
+      font-weight: bold;
+    }
+
+    .form-contato input,
+    .form-contato textarea {
+      width: 100%;
+      padding: 13px;
+      margin-top: 8px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font: inherit;
+      box-sizing: border-box;
+    }
+
+    .form-contato textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form-contato button {
+      margin-top: 22px;
+      padding: 13px 24px;
+      border: none;
+      border-radius: 8px;
+      background: #7041a6;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-contato button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #mensagemContato {
+      margin-top: 18px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .contato {
+        margin: 30px 15px;
+        padding: 15px;
+      }
+
+      .form-contato {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="cabecalho">
+    <a href="index.html" class="logo">AF.</a>
+
+    <nav class="menu">
+      <a href="index.html">Início</a>
+      <a href="quemsoueu.html">Quem sou eu</a>
+      <a href="portfolio.html">Portfólio</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
+
+  <main class="contato">
+
+    <h1>Vamos conversar?</h1>
+
+    <p>
+      Ficarei feliz em receber sua mensagem!
+      Preencha o formulário abaixo para entrar em contato comigo.
+    </p>
+
+    <section class="form-contato">
+
+      <form id="formContato">
+
+        <label for="nome">Nome completo</label>
+        <input
+          type="text"
+          id="nome"
+          placeholder="Digite seu nome"
+          required
+        >
+
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Digite seu e-mail"
+          required
+        >
+
+        <label for="telefone">Telefone</label>
+        <input
+          type="tel"
+          id="telefone"
+          placeholder="(00) 00000-0000"
+          required
+        >
+
+        <label for="assunto">Assunto / Mensagem</label>
+        <textarea
+          id="assunto"
+          placeholder="Escreva sua mensagem..."
+          required
+        ></textarea>
+
+        <button type="submit" id="botaoEnviar">
+          Enviar mensagem
+        </button>
+
+        <p id="mensagemContato"></p>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>© 2026 Ana Flávia. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+
+  <script>
+    const formulario = document.getElementById('formContato');
+    const mensagem = document.getElementById('mensagemContato');
+    const botao = document.getElementById('botaoEnviar');
+
+    formulario.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const assunto = document.getElementById('assunto').value.trim();
+
+      if (!window.supabaseClient) {
+        mensagem.style.color = '#c62828';
+        mensagem.textContent = 'Não foi possível conectar ao banco de dados.';
+        return;
+      }
+
+      botao.disabled = true;
+      botao.textContent = 'Enviando...';
+      mensagem.textContent = '';
+
+      try {
+        const { error } = await window.supabaseClient
+          .from('lead')
+          .insert({
+            nome: nome,
+            email: email,
+            telefone: telefone,
+            assunto: assunto
+          });
+
+        if (error) throw error;
+
+        mensagem.style.color = '#287a43';
+        mensagem.textContent = 'Mensagem enviada com sucesso! Obrigada pelo contato.';
+        formulario.reset();
+
+      } catch (erro) {
+        console.error('Erro ao enviar mensagem:', erro);
+        mensagem.style.color = '#c62828';
+        mensagem.textContent = 'Não foi possível enviar. Tente novamente.';
+      } finally {
+        botao.disabled = false;
+        botao.textContent = 'Enviar mensagem';
+      }
+    });
+  </script>
+
+</body>
+</html>
