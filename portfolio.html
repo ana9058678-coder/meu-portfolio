@@ -4,65 +4,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta name="description" content="Conheça os projetos desenvolvidos por Ana Flávia durante sua formação em Técnico em Informática.">
-  <title>Meu Portfólio | Ana Flávia</title>
+
+  <meta property="og:title" content="Portfólio | Ana Flávia">
+  <meta property="og:description" content="Conheça meus projetos e minha evolução na área de tecnologia.">
+
+  <title>Portfólio | Ana Flávia</title>
+
   <link rel="stylesheet" href="style.css">
 
   <style>
+    /* PÁGINA PORTFÓLIO */
+
     .pagina-portfolio {
-      padding: 65px 8%;
+      padding: 100px 8%;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(160, 15, 25, 0.13), transparent 30%),
+        #100d0e;
+      min-height: 500px;
     }
 
     .portfolio-intro {
-      max-width: 750px;
-      margin: 0 auto 45px;
+      max-width: 800px;
+      margin: 0 auto 65px;
       text-align: center;
+    }
+
+    .portfolio-intro .destaque {
+      color: #ed2633;
     }
 
     .portfolio-intro h1 {
       font-family: 'Playfair Display', serif;
-      color: var(--roxo-escuro);
-      font-size: clamp(38px, 5vw, 54px);
+      color: #fff4f1;
+      font-size: clamp(38px, 5vw, 58px);
       line-height: 1.2;
-      margin-bottom: 18px;
+      margin: 18px 0;
     }
 
     .portfolio-intro h1 span {
-      color: var(--roxo);
+      color: #e51e2b;
     }
 
     .portfolio-intro p {
-      color: var(--cinza);
-      line-height: 1.8;
+      color: #c5b9b9;
+      line-height: 1.9;
+      max-width: 700px;
+      margin: auto;
+      font-size: 15px;
     }
+
+    /* GRADE DE PROJETOS */
 
     .grade-projetos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
       justify-content: center;
-      gap: 25px;
+      gap: 30px;
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
     }
 
     .projeto-card {
       overflow: hidden;
-      background: var(--branco);
-      border: 1px solid var(--borda);
-      border-radius: 18px;
-      box-shadow: var(--sombra);
-      transition: 0.3s;
+      background: linear-gradient(145deg, #211718, #151112);
+      border: 1px solid #482126;
+      border-radius: 6px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      transition: 0.35s ease;
+      min-width: 0;
     }
 
     .projeto-card:hover {
-      transform: translateY(-7px);
+      transform: translateY(-9px);
+      border-color: #e51e2b;
+      box-shadow: 0 18px 40px rgba(150, 10, 20, 0.2);
     }
 
     .projeto-imagem {
       height: 220px;
-      background: var(--lilas);
+      background: #241719;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      border-bottom: 2px solid #9d1722;
     }
 
     .projeto-imagem img {
@@ -70,98 +98,131 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .projeto-card:hover .projeto-imagem img {
+      transform: scale(1.05);
     }
 
     .sem-foto {
-      color: var(--roxo);
+      color: #e51e2b;
       font-family: 'Playfair Display', serif;
       font-size: 65px;
       font-weight: 700;
     }
 
     .projeto-conteudo {
-      padding: 25px;
+      padding: 28px;
     }
 
     .categoria {
-      color: var(--roxo);
+      color: #ed2633;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
     }
 
     .projeto-conteudo h3 {
-      color: var(--roxo-escuro);
-      font-size: 21px;
-      margin: 10px 0;
+      color: #fff4f1;
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      margin: 13px 0;
     }
 
     .projeto-conteudo p {
-      color: var(--cinza);
+      color: #c5b9b9;
       font-size: 14px;
       line-height: 1.8;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      overflow-wrap: anywhere;
     }
 
     .projeto-link {
       display: inline-block;
-      color: var(--roxo);
+      color: #ed2633;
       font-size: 14px;
       font-weight: 700;
       text-decoration: none;
+      transition: 0.3s;
     }
 
     .projeto-link:hover {
-      color: var(--roxo-escuro);
+      color: #fff;
+      transform: translateX(4px);
     }
+
+    /* ESTADOS DE CARREGAMENTO */
 
     .estado-projetos {
       grid-column: 1 / -1;
-      padding: 45px 25px;
+      padding: 55px 25px;
       text-align: center;
-      background: var(--branco);
-      border: 1px solid var(--borda);
-      border-radius: 18px;
+      background: #1b1516;
+      border: 1px solid #482126;
+      border-radius: 6px;
     }
 
     .estado-projetos h3 {
-      color: var(--roxo-escuro);
-      margin-bottom: 10px;
+      color: #fff4f1;
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      margin-bottom: 12px;
     }
 
     .estado-projetos p {
-      color: var(--cinza);
+      color: #c5b9b9;
+      font-size: 14px;
     }
 
+    /* FINAL DA PÁGINA */
+
     .portfolio-final {
-      padding: 55px 20px;
+      padding: 85px 10%;
       text-align: center;
-      background: var(--lilas);
+      background:
+        linear-gradient(rgba(75, 5, 12, 0.88), rgba(15, 10, 11, 0.97)),
+        #250d10;
+      border-top: 1px solid #642027;
     }
 
     .portfolio-final h2 {
       font-family: 'Playfair Display', serif;
-      color: var(--roxo-escuro);
-      font-size: clamp(26px, 4vw, 34px);
-      margin-bottom: 15px;
+      color: #fff4f1;
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 18px;
     }
 
     .portfolio-final p {
-      color: var(--cinza);
+      color: #d0bfc0;
       line-height: 1.8;
       max-width: 650px;
-      margin: 0 auto 25px;
+      margin: 0 auto 30px;
     }
 
     .portfolio-final .botao {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      background: #d71928;
+      border-color: #d71928;
+      color: #fff;
     }
 
-    @media (max-width: 600px) {
+    .portfolio-final .botao:hover {
+      background: #a80e1b;
+      border-color: #a80e1b;
+    }
+
+    /* RESPONSIVIDADE */
+
+    @media (max-width: 750px) {
       .pagina-portfolio {
-        padding: 50px 7%;
+        padding: 70px 7%;
+      }
+
+      .portfolio-intro {
+        margin-bottom: 45px;
       }
 
       .grade-projetos {
@@ -169,7 +230,7 @@
       }
 
       .portfolio-final {
-        padding: 45px 7%;
+        padding: 65px 7%;
       }
     }
   </style>
@@ -177,13 +238,17 @@
 
 <body>
 
+  <!-- CABEÇALHO -->
+
   <header class="cabecalho">
+
     <a href="index.html" class="logo">
       <img src="imagens/logo-af.png" alt="Logo AF"
         style="width: 75px; height: 75px; object-fit: contain; vertical-align: middle;">
     </a>
 
     <nav class="menu">
+
       <a href="index.html">Início</a>
       <a href="quemsoueu.html">Quem sou eu</a>
       <a href="portfolio.html" class="ativo">Portfólio</a>
@@ -213,24 +278,35 @@
         </svg>
 
       </a>
+
     </nav>
+
   </header>
 
   <main>
 
+    <!-- APRESENTAÇÃO DO PORTFÓLIO -->
+
     <section class="pagina-portfolio">
 
       <div class="portfolio-intro">
+
         <span class="destaque">MEUS TRABALHOS</span>
 
-        <h1>Projetos que fazem parte da minha <span>jornada.</span></h1>
+        <h1>
+          Projetos que fazem parte da minha
+          <span>jornada.</span>
+        </h1>
 
         <p>
           Aqui estão alguns dos projetos que desenvolvi durante minha
           formação em Técnico em Informática. Cada trabalho representa
           uma experiência e uma nova oportunidade de aprendizado.
         </p>
+
       </div>
+
+      <!-- OS PROJETOS SÃO CARREGADOS PELO SUPABASE -->
 
       <div class="grade-projetos" id="listaProjetos">
 
@@ -243,7 +319,10 @@
 
     </section>
 
+    <!-- FINAL -->
+
     <section class="portfolio-final">
+
       <h2>Todo projeto começa com uma ideia.</h2>
 
       <p>
@@ -254,28 +333,45 @@
       <a href="quemsoueu.html" class="botao">
         Conheça minha história
       </a>
+
     </section>
 
   </main>
 
+  <!-- RODAPÉ -->
+
   <footer class="rodape">
+
     <div>
+
       <a href="index.html" class="logo">
         <img src="imagens/logo-af.png" alt="Logo AF"
           style="width: 75px; height: 75px; object-fit: contain; vertical-align: middle;">
       </a>
+
       <p>Construindo meu caminho na tecnologia.</p>
+
     </div>
 
     <div class="rodape-links">
-      <a href="https://www.instagram.com/alveswxs7/" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a href="https://escola.nexialabs.com.br/" target="_blank" rel="noopener noreferrer">Escola Dr. João Beraldo</a>
+
+      <a href="https://www.instagram.com/alveswxs7/" target="_blank" rel="noopener noreferrer">
+        Instagram
+      </a>
+
+      <a href="https://escola.nexialabs.com.br/" target="_blank" rel="noopener noreferrer">
+        Escola Dr. João Beraldo
+      </a>
+
     </div>
 
     <p class="copyright">
       © 2026 Ana Flávia. Todos os direitos reservados.
     </p>
+
   </footer>
+
+  <!-- CONEXÃO COM SUPABASE -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
