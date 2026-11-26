@@ -540,3 +540,10 @@ a {
     justify-content: center;
   }
 }
+/* Seção sobre segurança digital */
+
+.seguranca-digital .titulo-secao p {
+  max-width: 850px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
