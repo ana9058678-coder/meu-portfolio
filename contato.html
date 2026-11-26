@@ -10,60 +10,93 @@
 
   <style>
     .contato {
-      max-width: 750px;
-      margin: 60px auto;
+      max-width: 850px;
+      margin: 70px auto;
       padding: 30px;
+      color: #f5f5f5;
     }
 
     .contato h1 {
-      color: #7041a6;
-      font-size: 36px;
-      margin-bottom: 10px;
+      color: #ffffff;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 42px;
+      margin-bottom: 15px;
     }
 
-    .contato p {
-      line-height: 1.7;
+    .contato h1 span {
+      color: #d71932;
+    }
+
+    .contato > p {
+      color: #c9c9c9;
+      line-height: 1.8;
+      font-size: 16px;
     }
 
     .form-contato {
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px #00000012;
-      margin-top: 25px;
+      background: linear-gradient(145deg, #191919, #100d0e);
+      padding: 38px;
+      border: 1px solid #492027;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px #00000066;
+      margin-top: 35px;
     }
 
     .form-contato label {
       display: block;
-      margin-top: 18px;
-      font-weight: bold;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      color: #f1eaea;
+      font-weight: 600;
     }
 
     .form-contato input,
     .form-contato textarea {
       width: 100%;
-      padding: 13px;
-      margin-top: 8px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+      padding: 15px;
+      background: #0c0c0c;
+      color: #ffffff;
+      border: 1px solid #3d3032;
+      border-radius: 9px;
       font: inherit;
       box-sizing: border-box;
+      outline: none;
+      transition: 0.3s ease;
+    }
+
+    .form-contato input::placeholder,
+    .form-contato textarea::placeholder {
+      color: #888888;
+    }
+
+    .form-contato input:focus,
+    .form-contato textarea:focus {
+      border-color: #d71932;
+      box-shadow: 0 0 0 3px #d7193220;
     }
 
     .form-contato textarea {
-      min-height: 130px;
+      min-height: 150px;
       resize: vertical;
     }
 
     .form-contato button {
-      margin-top: 22px;
-      padding: 13px 24px;
-      border: none;
-      border-radius: 8px;
-      background: #7041a6;
+      margin-top: 28px;
+      padding: 15px 28px;
+      border: 1px solid #d71932;
+      border-radius: 9px;
+      background: #a30f25;
       color: white;
       font-weight: bold;
+      font-size: 15px;
       cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .form-contato button:hover:not(:disabled) {
+      background: #d71932;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px #d7193240;
     }
 
     .form-contato button:disabled {
@@ -72,8 +105,9 @@
     }
 
     #mensagemContato {
-      margin-top: 18px;
+      margin-top: 20px;
       font-weight: bold;
+      line-height: 1.6;
     }
 
     @media (max-width: 600px) {
@@ -82,8 +116,12 @@
         padding: 15px;
       }
 
+      .contato h1 {
+        font-size: 32px;
+      }
+
       .form-contato {
-        padding: 20px;
+        padding: 22px;
       }
     }
   </style>
@@ -125,18 +163,19 @@
           <path d="M12 14v3"/>
 
         </svg>
-
       </a>
     </nav>
   </header>
 
   <main class="contato">
 
-    <h1>Vamos conversar?</h1>
+    <h1>Vamos <span>conversar?</span></h1>
 
     <p>
       Ficarei feliz em receber sua mensagem!
       Preencha o formulário abaixo para entrar em contato comigo.
+      Será um prazer conhecer você e conversar sobre tecnologia,
+      projetos e novas oportunidades.
     </p>
 
     <section class="form-contato">
@@ -226,7 +265,7 @@
       const assunto = document.getElementById('assunto').value.trim();
 
       if (!window.supabaseClient) {
-        mensagem.style.color = '#c62828';
+        mensagem.style.color = '#ff596d';
         mensagem.textContent = 'Não foi possível conectar ao banco de dados.';
         return;
       }
@@ -247,13 +286,13 @@
 
         if (error) throw error;
 
-        mensagem.style.color = '#287a43';
+        mensagem.style.color = '#65d68a';
         mensagem.textContent = 'Mensagem enviada com sucesso! Obrigada pelo contato.';
         formulario.reset();
 
       } catch (erro) {
         console.error('Erro ao enviar mensagem:', erro);
-        mensagem.style.color = '#c62828';
+        mensagem.style.color = '#ff596d';
         mensagem.textContent = 'Não foi possível enviar. Tente novamente.';
       } finally {
         botao.disabled = false;
