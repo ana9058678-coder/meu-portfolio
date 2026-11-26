@@ -14,6 +14,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background: #090909;
     }
 
     .login-area {
@@ -21,20 +22,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 55px 7%;
+      padding: 65px 7%;
       background:
-        radial-gradient(circle at 15% 20%, #eee4ff 0, transparent 35%),
-        var(--fundo);
+        radial-gradient(circle at 15% 20%, #381017 0, transparent 35%),
+        radial-gradient(circle at 85% 80%, #250b10 0, transparent 35%),
+        #090909;
     }
 
     .login-card {
       width: 100%;
       max-width: 450px;
       padding: 45px;
-      background: var(--branco);
-      border: 1px solid var(--borda);
+      background: linear-gradient(145deg, #1b1919, #100e0f);
+      border: 1px solid #51212b;
       border-radius: 22px;
-      box-shadow: var(--sombra);
+      box-shadow: 0 20px 60px #00000080;
     }
 
     .login-logo {
@@ -54,54 +56,68 @@
 
     .login-card h1 {
       text-align: center;
-      font-family: 'Playfair Display', serif;
-      color: var(--roxo-escuro);
-      font-size: 32px;
-      margin-bottom: 8px;
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #ffffff;
+      font-size: 34px;
+      margin: 15px 0 8px;
     }
 
     .login-subtitulo {
       text-align: center;
-      color: var(--cinza);
+      color: #bdb5b6;
       font-size: 14px;
-      margin-bottom: 30px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .login-card .destaque {
+      color: #ed3049;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
     }
 
     .campo-login {
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .campo-login label {
       display: block;
       font-weight: 600;
       font-size: 13px;
-      color: var(--texto);
-      margin-bottom: 8px;
+      color: #f0e9ea;
+      margin-bottom: 9px;
     }
 
     .campo-login input {
       width: 100%;
-      padding: 14px 16px;
-      border: 1px solid var(--borda);
+      padding: 15px 16px;
+      border: 1px solid #443337;
       border-radius: 10px;
       outline: none;
       font-family: inherit;
       font-size: 14px;
-      background: #fcfbfe;
+      color: #ffffff;
+      background: #0b0b0b;
       transition: 0.3s;
+      box-sizing: border-box;
+    }
+
+    .campo-login input::placeholder {
+      color: #817779;
     }
 
     .campo-login input:focus {
-      border-color: var(--roxo);
-      box-shadow: 0 0 0 3px rgba(121, 82, 199, 0.12);
+      border-color: #d71932;
+      box-shadow: 0 0 0 3px #d7193220;
     }
 
     .botao-login {
       width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 30px;
-      background: var(--roxo);
+      padding: 16px;
+      border: 1px solid #d71932;
+      border-radius: 10px;
+      background: #a30f25;
       color: white;
       font-family: inherit;
       font-size: 15px;
@@ -111,8 +127,9 @@
     }
 
     .botao-login:hover {
-      background: var(--roxo-escuro);
+      background: #d71932;
       transform: translateY(-2px);
+      box-shadow: 0 8px 22px #d7193240;
     }
 
     .botao-login:disabled {
@@ -124,40 +141,53 @@
     .mensagem-login {
       display: none;
       margin-top: 18px;
-      padding: 12px;
+      padding: 13px;
       border-radius: 10px;
       font-size: 13px;
       text-align: center;
+      line-height: 1.5;
     }
 
     .mensagem-login.erro {
       display: block;
-      background: #fff0f0;
-      color: #a52b35;
+      background: #3b151b;
+      color: #ff9aa7;
+      border: 1px solid #702431;
     }
 
     .mensagem-login.sucesso {
       display: block;
-      background: #edf9f0;
-      color: #23733a;
+      background: #142b1b;
+      color: #8ee0a5;
+      border: 1px solid #28643a;
     }
 
     .login-voltar {
       display: block;
       text-align: center;
-      margin-top: 25px;
-      color: var(--roxo);
+      margin-top: 28px;
+      color: #e04458;
       font-size: 13px;
       font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
     }
 
     .login-voltar:hover {
-      color: var(--roxo-escuro);
+      color: #ffffff;
     }
 
     @media (max-width: 500px) {
+      .login-area {
+        padding: 35px 18px;
+      }
+
       .login-card {
         padding: 32px 23px;
+      }
+
+      .login-card h1 {
+        font-size: 29px;
       }
     }
   </style>
@@ -176,7 +206,24 @@
       <a href="quemsoueu.html">Quem sou eu</a>
       <a href="portfolio.html">Portfólio</a>
       <a href="contato.html">Contato</a>
-      <a href="login.html" class="link-login">Entrar</a>
+
+      <a href="login.html"
+         class="link-login"
+         aria-label="Entrar na área administrativa"
+         title="Entrar">
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+          width="21" height="21" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+
+          <rect x="4" y="10" width="16" height="11" rx="2"/>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+          <path d="M12 14v3"/>
+
+        </svg>
+      </a>
     </nav>
   </header>
 
