@@ -1,3 +1,4 @@
+```css
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 :root {
@@ -33,6 +34,8 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+/* Cabeçalho */
 
 .cabecalho {
   width: 100%;
@@ -540,10 +543,15 @@ a {
     justify-content: center;
   }
 }
+
 /* Seção sobre segurança digital */
 
 .seguranca-digital .titulo-secao p {
+  width: 100%;
   max-width: 850px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   line-height: 1.8;
+  text-align: center;
 }
+```
